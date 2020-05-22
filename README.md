@@ -81,9 +81,9 @@ We can see there are three subdirectories:
     * _`./pipeline/step2_postproc`_
       * Runs [Logbook](http://docs.neuroinfo.org/logbook/en/latest/quick_start.html) for data postprocessing
       * _Running this package may not be necessary_
-    * _`./pipeline/step3_viz`_ (we won't be using this)
+    * _`./pipeline/step3_viz`_ 
       * Runs [Dpdash](http://docs.neuroinfo.org/dpdash/en/latest/index.html) for data visualization
-      * _Running this package may not be necessary. I presently have been unable to get it running_
+      * _Running this package may not be necessary. I presently have been unable to get it running and this is not presently covered in this tutorial._
       
 ...and we also see there are two files:
 * a `_README_` file that has instructions on how to run your pipeline.  This is essentially the same material in this tutorial.
