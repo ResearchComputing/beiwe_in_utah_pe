@@ -111,6 +111,8 @@ Now add your password _(substitute it for <password> below)_ to a file in your h
 
 ```echo <password> > ~/.lochness.pass```
 
+_Note: this command only needs to be run once at the beginning of the study_
+
 ### Step 2: Now generate a PHOENIX directory. This is where data will be downloaded
 
 _(you can run this from the command line - it only takes a few seconds)_:
@@ -120,38 +122,56 @@ singularity exec /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/containers/loc
 phoenix-generator.py --study TERA_test /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX
 ```
 
+_Note: this command only needs to be run once at the beginning of the study_
+
 ### Step 3: Now edit and copy a beiwe.colorado-specific TERA_test_metadata.csv file to the PHOENIX directory.
 
+Open the _TERA_test_metadata.csv_ file in the _./proj_TERA/beiwe_ directory and edit it as needed:
 
-#note that you'll need to add new patients to this csv file and copy it into the PHOENIX directory each
-#time you enroll new patients
+```
+nano TERA_test_metadata.csv
+```
 
+The file contents should looks somethig like this:
+```
+Active,Consent,Subject ID,Beiwe
+1,2019-08-01,SUBJECT_1,beiwe.colorado:Dxb7xxbjQSPhH5m7rMqfPz00:34r2oh74
+2,2019-08-01,SUBJECT_2,beiwe.colorado:Dxb7xxbjQSPhH5m7rMqfPz00:5rbqdip3
+3,2019-08-01,SUBJECT_3,beiwe.colorado:Dxb7xxbjQSPhH5m7rMqfPz00:bir7yxlg
+4,2019-08-01,SUBJECT_4,beiwe.colorado:Dxb7xxbjQSPhH5m7rMqfPz00:c8913f5k
+5,2019-08-01,SUBJECT_5,beiwe.colorado:Dxb7xxbjQSPhH5m7rMqfPz00:lsaj9y7z
+6,2019-08-01,SUBJECT_6,beiwe.colorado:Dxb7xxbjQSPhH5m7rMqfPz00:obqvlqjs
+```
+You can add new subjects manually as they enroll (I don't know of a way to automate this.  To do so, you can log into [beiwe.colorado.edu](https://beiwe.colorado.edu) and enter the ID's of any new patients under a new SUBJECT number. For example, if there is a new participant with id db96lxtc in the TERA_test study (id Dxb7xxbjQSPhH5m7rMqfPz00), you would add the following line: 
+```7,2019-08-01,SUBJECT_7,beiwe.colorado:Dxb7xxbjQSPhH5m7rMqfPz00:db96lxtc```
+
+When you are finished, type _CTRL^x_ to save and exit he _nano_ editor. 
+
+_Notes_
+* Don't forget to change the study ID (currently Dxb7xxbjQSPhH5m7rMqfPz00) when you move to your production study.
+* The date 2019-08-01 is the consent date, which is the date the subject enrolled. I beleieve this can be any date as long as it falls _on or before_ the enrollment date. 
+
+
+Now copy the file into the PHOENIX directory (do this each time you enroll new patients):
+```
 cp ./TERA_test_metadata.csv \
 /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX/GENERAL/TERA_test/TERA_test_metadata.csv
+```
+_Note: this step should be run intermittently as you enroll new users_
 
-#############
-#Step 1d: Now dowload the data with the lochness "sync.py" script.
-#This will download everything the first time you run it.
-#Each subsequent time you run it, it only downloads new data.
-#Note that you'll need to use the password you set above when you used "crpyt.py" to encrypt the json file
+### Step 4: Now dowload the data with the lochness "sync.py" script.
 
-#this how you do it from the command line:
-singularity exec ./containers/lochness.sif sync.py --config ./pipeline/step1_download/config.yaml --source beiwe
-[enter password when prompted]
-
-#but it is better to do it from a job (as it may take a while and you may want to automate)
-#note that the password will be automatically passed to the batch job from your ~/.lochness.pass file
+This step will download everything the first time you run it. Each subsequent time you run it, it only downloads new data. You will run this step from a Slurm batch job because it can take awhile. Note that the password will be automatically passed to the batch job from your ~/.lochness.pass file
+```
 cd /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step1_download
 sbatch batch_lochness.sh
+```
 
-# You are done with lochness!
-# Note that you won't need to rerun Steps 1a and 1b unless you develop a new study
-# You'll need to rerun Step 1c when you add new participants
-# And you'll need to run Step 1d intermittently to bring your data up-to-date.
+_Note: this step should be run each time you want to update the data_
 
-##########################################################################################
-##########################################################################################
-# Step 2: run logbook to postprocess the raw datastream that you downloaded with logbook
+You are done with _Lochness!_
+
+### Run _Logbook_ to postprocess the raw datastream that you downloaded with logbook
 
 #############
 #e.g., for phone accelerometer data data 1 to 2 for TERA_test study SUBJECT_1
