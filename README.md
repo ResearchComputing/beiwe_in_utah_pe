@@ -12,7 +12,7 @@ __Prerequisites:__
 
 #### Step 1: Connect to the Utah VPN
 
-* Open your Cisco Anytime Connect client (see screenshot)
+* Open your Cisco Anytime Connect client 
 * In the “Connect” section manually type “vpnaccess.utah.edu” and then click the “connect” button. This will open a dialog box. Enter the following:
   * _Group:_ “2FA-DuoSecurity”
   * _Username:_ uXXXXXXX (make sure to use your 7-digit numeric ID, not preceded by a zero (0): for example, I used u6028624 and not u06028624
