@@ -159,8 +159,18 @@ _Note: this step should be run intermittently as you enroll new users_
 #### Step 4: Now dowload the data with the lochness "sync.py" script.
 
 This step will download everything the first time you run it. Each subsequent time you run it, it only downloads new data. You will run this step from a Slurm batch job because it can take awhile. Note that the password will be automatically passed to the batch job from your ~/.lochness.pass file
+
 ```
 cd /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step1_download
+```
+
+Take a look at the script to familiarize yourself:
+```
+cat batch_lochness.sh
+```
+
+Now submit the script:
+```
 sbatch batch_lochness.sh
 ```
 
@@ -182,7 +192,7 @@ _Note that you can edit batch_logbook.sh should you need to postprocess specific
 ```singularity exec ./containers/logbook.sif lb.py --phoenix-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX --consent-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX/GENERAL --log-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step2_postproc/logs --data-type phone --phone-stream accelerometer --day-from 1 --day-to 2 --study TERA_test --subject SUBJECT_1
 ```
 
-### Step 3: run dpdash to vizualize the postprocessed data from logbook
+### Running dpdash to vizualize the postprocessed data from logbook
 
 #### Step 1: start an interactive job
 
