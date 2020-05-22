@@ -70,24 +70,24 @@ drwxrwx---+ 5 u6028624 kaiser      83 Apr 29 22:15 pipeline
 
 We can see there are three subdirectories:
 
-* _./containers_
+* `_./containers_`
   * has the containers for each of the three software packages noted above. This *is* the software.
-* _./data_
+* `_./data_`
   * has the PHOENIX directory that is used to store the Biewe data hierarchy
-* _./pipeline_
+* `_./pipeline_`
   * has the scripts/protocols needed to run the three steps of the Biewe pipeline in these three subdirectories:
-    * _./pipeline/step1_download_
+    * `_./pipeline/step1_download_`
       * Runs [Lochness](http://docs.neuroinfo.org/lochness/en/latest/quick_start.html) for data setup and download
-    * _./pipeline/step2_postproc_
+    * `_./pipeline/step2_postproc_`
       * Runs [Logbook](http://docs.neuroinfo.org/logbook/en/latest/quick_start.html) for data postprocessing
       * _Running this package may not be necessary_
-    * _./pipeline/step3_viz_ (we won't be using this)
+    * `_./pipeline/step3_viz_ (we won't be using this)`
       * Runs [Dpdash](http://docs.neuroinfo.org/dpdash/en/latest/index.html) for data visualization
       * _Running this package may not be necessary. I presently have been unable to get it running_
       
 ...and we also see there are two files:
-* a _README_ file that has instructions on how to run your pipeline.  This is essentially the same material in this tutorial.
-* _TERA_test_metadata.csv_: This is a template that you'll use when you add subjects. More on using this below. 
+* a `_README_` file that has instructions on how to run your pipeline.  This is essentially the same material in this tutorial.
+* `_TERA_test_metadata.csv_`: This is a template that you'll use when you add subjects. More on using this below. 
 
 ### Submitting jobs to download data
 ### Submitting jobs to postprocess data
