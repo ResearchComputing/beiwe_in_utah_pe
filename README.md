@@ -86,8 +86,8 @@ We can see there are three subdirectories:
       * _Running this package may not be necessary. I presently have been unable to get it running and this is not presently covered in this tutorial._
       
 ...and we also see there are two files:
-* a `_README_` file that has instructions on how to run your pipeline.  This is essentially the same material in this tutorial.
-* `_TERA_test_metadata.csv_`: This is a template that you'll use when you add subjects. More on using this below. 
+* a _`README`_ file that has instructions on how to run your pipeline.  This is essentially the same material in this tutorial.
+* _`TERA_test_metadata.csv`_: This is a template that you'll use when you add subjects. More on using this below. 
 
 In the following sections we will go through each step of the pipeline: _Lochness_, _Logbook_, and _DPDash_.
 
@@ -113,7 +113,7 @@ Now add your password _(substitute it for <password> below)_ to a file in your h
 
 _Note: this command only needs to be run once at the beginning of the study_
 
-### Step 2: Now generate a PHOENIX directory. This is where data will be downloaded
+#### Step 2: Now generate a PHOENIX directory. This is where data will be downloaded
 
 _(you can run this from the command line - it only takes a few seconds)_:
 
@@ -124,7 +124,7 @@ phoenix-generator.py --study TERA_test /uufs/chpc.utah.edu/common/HIPAA/proj_TER
 
 _Note: this command only needs to be run once at the beginning of the study_
 
-### Step 3: Now edit and copy a beiwe.colorado-specific TERA_test_metadata.csv file to the PHOENIX directory.
+#### Step 3: Now edit and copy a beiwe.colorado-specific TERA_test_metadata.csv file to the PHOENIX directory.
 
 Open the _TERA_test_metadata.csv_ file in the _./proj_TERA/beiwe_ directory and edit it as needed:
 
@@ -145,12 +145,9 @@ Active,Consent,Subject ID,Beiwe
 You can add new subjects manually as they enroll (I don't know of a way to automate this.  To do so, you can log into [beiwe.colorado.edu](https://beiwe.colorado.edu) and enter the ID's of any new patients under a new SUBJECT number. For example, if there is a new participant with id db96lxtc in the TERA_test study (id Dxb7xxbjQSPhH5m7rMqfPz00), you would add the following line: 
 ```7,2019-08-01,SUBJECT_7,beiwe.colorado:Dxb7xxbjQSPhH5m7rMqfPz00:db96lxtc```
 
-When you are finished, type _CTRL^x_ to save and exit he _nano_ editor. 
-
-_Notes_
+* When you are finished, type _CTRL^x_ to save and exit the _nano_ editor. 
 * Don't forget to change the study ID (currently Dxb7xxbjQSPhH5m7rMqfPz00) when you move to your production study.
 * The date 2019-08-01 is the consent date, which is the date the subject enrolled. I beleieve this can be any date as long as it falls _on or before_ the enrollment date. 
-
 
 Now copy the file into the PHOENIX directory (do this each time you enroll new patients):
 ```
@@ -159,7 +156,7 @@ cp ./TERA_test_metadata.csv \
 ```
 _Note: this step should be run intermittently as you enroll new users_
 
-### Step 4: Now dowload the data with the lochness "sync.py" script.
+#### Step 4: Now dowload the data with the lochness "sync.py" script.
 
 This step will download everything the first time you run it. Each subsequent time you run it, it only downloads new data. You will run this step from a Slurm batch job because it can take awhile. Note that the password will be automatically passed to the batch job from your ~/.lochness.pass file
 ```
@@ -171,38 +168,41 @@ _Note: this step should be run each time you want to update the data_
 
 You are done with _Lochness!_
 
-### Run _Logbook_ to postprocess the raw datastream that you downloaded with logbook
+### Running _Logbook_ to postprocess the raw datastream that you downloaded with logbook
 
-#############
-#e.g., for phone accelerometer data data 1 to 2 for TERA_test study SUBJECT_1
-singularity exec ./containers/logbook.sif lb.py --phoenix-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX --consent-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX/GENERAL --log-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step2_postproc/logs --data-type phone --phone-stream accelerometer --day-from 1 --day-to 2 --study TERA_test --subject SUBJECT_1
+This step can be run from a Slurm batch job and may take awhile. 
 
-#but it is better to do it from a job (as it may take a while and you may want to automate)
+```
 cd /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step2_postproc
 sbatch batch_logbook.sh
-#note that you may want to edit batch_logbook should you need to postprocess specific
-#subjects or data streams
-#
-##########################################################################################
-##########################################################################################
-# Step 3: run dpdash to vizualize the postprocessed data from logbook
-#
-#Step 3a: start an interactive job
-#e.g., for a 2 hour job
-srun --time=2:00:00 --ntasks 2 --account=owner-guest --partition=redwood-guest --qos=redwood-guest  --pty /bin/bash -l
-module load singularity/3.3.0
+```
 
-#Step 3b: export needed variables
-cd ./pipeline/step3_viz/dpdash/singularity/
+_Note that you can edit batch_logbook.sh should you need to postprocess specific subjects or data streams.  Here's an example command that processes phone accelerometer data for day 1 to 2 for TERA_test study SUBJECT_1
+
+```singularity exec ./containers/logbook.sif lb.py --phoenix-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX --consent-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX/GENERAL --log-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step2_postproc/logs --data-type phone --phone-stream accelerometer --day-from 1 --day-to 2 --study TERA_test --subject SUBJECT_1
+```
+
+### Step 3: run dpdash to vizualize the postprocessed data from logbook
+
+#### Step 1: start an interactive job
+
+e.g., for a 2 hour job:
+```srun --time=2:00:00 --ntasks 2 --account=owner-guest --partition=redwood-guest --qos=redwood-guest  --pty /bin/bash -l
+module load singularity/3.3.0```
+
+#### Step 2: export needed variables
+```cd ./pipeline/step3_viz/dpdash/singularity/
 export state=/uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step3_viz/state
 export data=/uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX
+```
+#### Step 3: initialize dpdash
+```bash init.sh ${data} ${state}```
 
-#Step 3c: initialize dpdash
-bash init.sh ${data} ${state}
+#### Step 4: start dpdash
+```singularity instance start --bind ${state}:/data --bind ${data}:${data} dpdash2.img dpdash```
+_(note that this command may fail the first time. Try again if that happens)_
 
-#Step 3d: start dpdash
-singularity instance start --bind ${state}:/data --bind ${data}:${data} dpdash2.img dpdash
-# (note that this command may fail the first time. Try again if that happens)
+#### Step 5: tunnel into dpdash
 
-# Step 3e:
+_I haven't figured out how to do this yet_
 
