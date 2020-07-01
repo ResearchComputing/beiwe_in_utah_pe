@@ -203,7 +203,8 @@ module load singularity/3.3.0
 ```
 
 #### Step 2: export needed variables
-```cd ./pipeline/step3_viz/dpdash/singularity/
+```
+cd ./pipeline/step3_viz/dpdash/singularity/
 export state=/uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step3_viz/state
 export data=/uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX
 ```
