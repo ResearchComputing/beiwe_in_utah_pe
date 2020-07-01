@@ -197,8 +197,10 @@ _Note that you can edit batch_logbook.sh should you need to postprocess specific
 #### Step 1: start an interactive job
 
 e.g., for a 2 hour job:
-```srun --time=2:00:00 --ntasks 2 --account=owner-guest --partition=redwood-guest --qos=redwood-guest  --pty /bin/bash -l
-module load singularity/3.3.0```
+```
+srun --time=2:00:00 --ntasks 2 --account=owner-guest --partition=redwood-guest --qos=redwood-guest  --pty /bin/bash -l
+module load singularity/3.3.0
+```
 
 #### Step 2: export needed variables
 ```cd ./pipeline/step3_viz/dpdash/singularity/
