@@ -147,7 +147,7 @@ You can add new subjects manually as they enroll (I don't know of a way to autom
 
 * When you are finished, type _CTRL^x_ to save and exit the _nano_ editor. 
 * Don't forget to change the study ID (currently Dxb7xxbjQSPhH5m7rMqfPz00) when you move to your production study.
-* The date 2019-08-01 is the consent date, which is the date the subject enrolled. I beleieve this can be any date as long as it falls _on or before_ the enrollment date. 
+* The date 2019-08-01 in this example is the consent date, which is the date the subject enrolled. I beleieve this can be any date as long as it falls _on or before_ the enrollment date. 
 
 Now copy the file into the PHOENIX directory (do this each time you enroll new patients):
 ```
