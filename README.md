@@ -224,12 +224,25 @@ export data=/uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX
 ```bash init.sh ${data} ${state}```
 
 #### Step 4: start dpdash
-```singularity instance start --bind ${state}:/data --bind ${data}:${data} dpdash2.img dpdash```
+```
+singularity instance start --bind ${state}:/data --bind ${data}:${data} dpdash2.img dpdash
+```
 _(note that this command may fail the first time. Try again if that happens)_
 
 #### Step 5: tunnel into dpdash
 
-_I haven't figured out how to do this yet_
+Open another terminal on your local laptop/desktop machine and open a tunnel to the session:
+```
+ssh -Nf -L 8899:[dpdash.url]:8000 u6028624@redwood.chpc.utah.edu
+```
+
+#### Step 5: stop dpdash instance when finished
+
+```
+singularity exec instance://dpdash /data/scripts/quit.sh
+singularity instance stop dpdash
+rm -Rf /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step3_viz/state
+```
 
 ### Useful links
 [Beiwe Wiki][http://wiki.beiwe.org/wiki/Main_Page]
