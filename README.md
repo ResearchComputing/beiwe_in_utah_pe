@@ -192,7 +192,16 @@ sbatch batch_logbook.sh
 _Note that you can edit batch_logbook.sh should you need to postprocess specific subjects or data streams.  Here's an example command that processes phone accelerometer data for day 1 to 2 for TERA_test study SUBJECT_1
 
 ```
-singularity exec ./containers/logbook.sif lb.py --phoenix-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX --consent-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX/GENERAL --log-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step2_postproc/logs --data-type phone --phone-stream accelerometer --day-from 1 --day-to 2 --study TERA_test --subject SUBJECT_1
+singularity exec ./containers/logbook.sif lb.py \
+--phoenix-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX \
+--consent-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX/GENERAL \
+--log-dir /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step2_postproc/logs \
+--data-type phone \
+--phone-stream accelerometer \
+--day-from 1 \
+--day-to 2 \
+--study TERA_test \
+--subject SUBJECT_1
 ```
 
 ### Running dpdash to vizualize the postprocessed data from logbook
