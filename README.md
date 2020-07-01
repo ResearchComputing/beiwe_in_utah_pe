@@ -143,7 +143,9 @@ Active,Consent,Subject ID,Beiwe
 6,2019-08-01,SUBJECT_6,beiwe.colorado:Dxb7xxbjQSPhH5m7rMqfPz00:obqvlqjs
 ```
 You can add new subjects manually as they enroll (I don't know of a way to automate this).  To do so, you can log into [beiwe.colorado.edu](https://beiwe.colorado.edu) and enter the ID's of any new patients under a new SUBJECT number. For example, if there is a new participant with id db96lxtc in the TERA_test study (id Dxb7xxbjQSPhH5m7rMqfPz00), you would add the following line: 
-```7,2019-08-01,SUBJECT_7,beiwe.colorado:Dxb7xxbjQSPhH5m7rMqfPz00:db96lxtc```
+```
+7,2019-08-01,SUBJECT_7,beiwe.colorado:Dxb7xxbjQSPhH5m7rMqfPz00:db96lxtc
+```
 
 * When you are finished, type _CTRL^x_ to save and exit the _nano_ editor. 
 * Don't forget to change the study ID (currently Dxb7xxbjQSPhH5m7rMqfPz00) when you move to your production study.
