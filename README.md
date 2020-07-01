@@ -219,3 +219,10 @@ _(note that this command may fail the first time. Try again if that happens)_
 
 _I haven't figured out how to do this yet_
 
+### Useful links
+[Beiwe Wiki][http://wiki.beiwe.org/wiki/Main_Page]
+[Lochness](http://docs.neuroinfo.org/lochness/en/latest/quick_start.html)
+[Logbook](http://docs.neuroinfo.org/logbook/en/latest/quick_start.html)
+[Dpdash](http://docs.neuroinfo.org/dpdash/en/latest/index.html) 
+[CU Beiwe Instance Dashboard](https://beiwe.colorado.edu)
+[Protected Environment](https://www.chpc.utah.edu/resources/ProtectedEnvironment.php)
