@@ -219,6 +219,8 @@ module load singularity/3.3.0
 cd ./pipeline/step3_viz/dpdash/singularity/
 export state=/uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step3_viz/state
 export data=/uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/PHOENIX
+mkdir -p ${state}
+rm -Rf ${state}/*
 ```
 #### Step 3: initialize dpdash
 ```bash init.sh ${data} ${state}```
@@ -241,7 +243,6 @@ ssh -Nf -L 8899:[dpdash.url]:8000 u6028624@redwood.chpc.utah.edu
 ```
 singularity exec instance://dpdash ${state}/scripts/quit.sh
 singularity instance stop dpdash
-rm -Rf ${state}
 ```
 
 ### Useful links
