@@ -239,9 +239,9 @@ ssh -Nf -L 8899:[dpdash.url]:8000 u6028624@redwood.chpc.utah.edu
 #### Step 5: stop dpdash instance when finished
 
 ```
-singularity exec instance://dpdash /data/scripts/quit.sh
+singularity exec instance://dpdash ${state}/scripts/quit.sh
 singularity instance stop dpdash
-rm -Rf /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/pipeline/step3_viz/state
+rm -Rf ${state}
 ```
 
 ### Useful links
