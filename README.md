@@ -246,7 +246,7 @@ singularity instance stop dpdash
 ```
 
 ### Useful links
-[Beiwe Wiki][http://wiki.beiwe.org/wiki/Main_Page]
+[Beiwe Wiki](http://wiki.beiwe.org/wiki/Main_Page)
 [Lochness](http://docs.neuroinfo.org/lochness/en/latest/quick_start.html)
 [Logbook](http://docs.neuroinfo.org/logbook/en/latest/quick_start.html)
 [Dpdash](http://docs.neuroinfo.org/dpdash/en/latest/index.html) 
