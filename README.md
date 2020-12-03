@@ -100,7 +100,7 @@ There is presently an unencrypted keyring file called _lochness.json_ in the _./
 Encrypt the file _(you can run this from the command line - it only takes a few seconds)_:
 
 ```
-module load singularity/3.3.0 
+module load singularity/3.6.4
 cp /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/data/.lochness.json ~
 singularity exec /uufs/chpc.utah.edu/common/HIPAA/proj_TERA/beiwe/containers/lochness.sif \
 crypt.py --encrypt ~/.lochness.json --output-file ~/.lochness.enc
@@ -211,7 +211,7 @@ singularity exec ./containers/logbook.sif lb.py \
 e.g., for a 2 hour job:
 ```
 srun --time=2:00:00 --ntasks 2 --account=owner-guest --partition=redwood-guest --qos=redwood-guest  --pty /bin/bash -l
-module load singularity/3.3.0
+module load singularity/3.6.4
 ```
 
 #### Step 2: export needed variables
